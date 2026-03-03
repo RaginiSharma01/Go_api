@@ -91,10 +91,8 @@ func (h *UserHandler) DeleteUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	
 	path := r.URL.Path
 
-	
 	idStr := strings.TrimPrefix(path, "/users/")
 
 	id, err := strconv.Atoi(idStr)
@@ -110,4 +108,11 @@ func (h *UserHandler) DeleteUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusNoContent)
+}
+
+func (h *UserHandler) UpdateUser(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPut {
+		http.Error(w, "not allowed", http.StatusMethodNotAllowed)
+		return
+	}
 }
