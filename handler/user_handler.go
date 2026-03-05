@@ -83,7 +83,7 @@ func (h *UserHandler) GetUsers(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(users)
 }
 func (h *UserHandler) GetUser(w http.ResponseWriter, r *http.Request) {
-
+	//path parameters
 	idStr := strings.TrimPrefix(r.URL.Path, "/api/v1/users/")
 
 	if idStr == "" {
