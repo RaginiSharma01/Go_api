@@ -4,7 +4,6 @@ import (
 	"api/config"
 	"context"
 	"fmt"
-	"log"
 
 	"github.com/jackc/pgx/v5/pgxpool"
 )
@@ -25,10 +24,12 @@ func ConnectDb(cfg *config.Config) (*PgDb, error) {
 
 	pool, err := pgxpool.New(context.Background(), connStr)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
+
 	if err = pool.Ping(context.Background()); err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
+
 	return &PgDb{Pool: pool}, nil
 }
